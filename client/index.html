@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>login and registration</title>
+    <script type="text/javascript" src='https://code.angularjs.org/1.4.8/angular.js'></script>
+    <script type="text/javascript" src='https://code.angularjs.org/1.4.8/angular-route.min.js'></script>
+    <script src='/js/app.js'></script>
+    <script src="/js/controllers/mainController.js"></script>
+    <script src="/js/controllers/dashboardController.js"></script>
+    <script src="/js/factories/userFactory.js"></script>
+  </head>
+  <body>
+    <h1>index page</h1>
+    <a href="#/">Login Reg</a> | <a href="#/dashboard">dashboard</a>
+    <div ng-view="">
+    </div>
+  </body>
+</html>
