@@ -10,6 +10,7 @@ myApp.factory('userFactory', function($http){
     },
 
     loginUser: function(input, callback){
+      //TODO: get cookie
       user = {};
       error = {};
       console.log('factory trying to log in with', input);
@@ -28,6 +29,10 @@ myApp.factory('userFactory', function($http){
     },
     getUser: function(callback){
       callback(user);
-    } 
+    },
+    logoutUser: function(){
+      //TODO: clear cookie
+      user = {};
+    }
   }
 })

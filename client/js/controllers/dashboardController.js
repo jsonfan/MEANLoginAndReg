@@ -7,4 +7,9 @@ myApp.controller('dashboardController', function($scope, $location, userFactory)
   if(!$scope.user.username){
     $location.url('/');
   }
+
+  $scope.logout = function(){
+    userFactory.logoutUser();
+    $location.url('/');
+  }
 });

@@ -26,4 +26,11 @@ myApp.controller('mainController', function($scope, $location, userFactory){
     })
     $scope.userData = {};
   }
+
+  $scope.loginFacebook = function(){
+    console.log('logging in with fb');
+  }
+  $scope.loginGoogle = function(){
+    console.log('logging in with google');
+  }
 });
