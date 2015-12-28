@@ -8,9 +8,10 @@ var FACEBOOK_APP_SECRET = "143096a9f6d9086ae890b7df30861e72";
 passport.use(new FacebookStrategy({
 		clientID: FACEBOOK_APP_ID,
 		clientSecret: FACEBOOK_APP_SECRET,
-		callbackURL: "http://localhost:8000/auth/facebook/callback"
+		callbackURL: "/auth/facebook/callback"
 	},
 	function(accessToken, refreshToken, profile, done) {
+			console.log('fbauth');
 		User.findOne({ authId: profile.id }, function(err, user) {
 			if(err) {
 				return done(err);
@@ -19,8 +20,10 @@ passport.use(new FacebookStrategy({
 			if(!user) {
 				user = new User({
 					authId: profile.id,
+					username: profile._json.id, //should change this later
 					name: profile.displayName,
 					provider: profile.provider,
+					pictureURL: 'https://graph.facebook.com/'+profile._json.id+'/picture?type=large',
 					json_info: profile._json
 				});
 				user.save(function(err) {

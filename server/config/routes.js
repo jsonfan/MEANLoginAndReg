@@ -4,12 +4,10 @@ module.exports = function(app) {
   app.post('/users', users.createUser);
   //OAUTH routes
   app.get("/auth/facebook", passport.authenticate("facebook"));
-	app.get("/auth/facebook/callback",
+  app.get("/auth/facebook/callback",
     passport.authenticate("facebook",
-      { failureRedirect: "/" }),
-        function(req, res) {
-  	       res.render("success", { user: req.session.passport.user });
-  });
+      { failureRedirect: "/", successRedirect:"/" }));
+
   app.get("/auth/google",
         passport.authenticate("google",
           { scope: ["https://www.googleapis.com/auth/plus.login",
@@ -17,10 +15,7 @@ module.exports = function(app) {
   }));
   app.get("/auth/google/callback",
     passport.authenticate("google",
-      { failureRedirect: "/" }),
-        function(req, res) {
-  	       res.render("success", { user: req.session.passport.user });
-  });
+      { failureRedirect: "/", successRedirect:"/" }));
   //local auth route
   app.post('/login', function(req, res, next){
     passport.authenticate('local', function(err, user, info){
@@ -39,4 +34,21 @@ module.exports = function(app) {
       });
     })(req,res,next);
   });
+
+  app.post('/logout', function(req,res){
+    console.log('logging out ', req.session.passport.user);
+    req.logOut();
+    console.log('are they still logged in?', req.isAuthenticated());
+    res.send(200);
+  })
+
+  //route to test if the user is logged in or not
+  app.get('/loggedin', function(req, res){
+    console.log('loggedin?', req.isAuthenticated());
+    return res.json(req.isAuthenticated() ? req.user : null);
+  });
+
+  app.get('/getAllUsers', users.getAllUsers);
+  app.post('/addFriend', users.addFriend);
+
 };

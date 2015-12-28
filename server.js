@@ -4,7 +4,6 @@ var express = require("express"),
     path = require("path"),
     mongoose = require('mongoose'),
     app = express();
-
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
@@ -17,7 +16,6 @@ app.use(cookieParser());
 app.use(expressSession({ secret: process.env.SESSION_SECRET || 'solegood',
                           resave: false,
                           saveUninitialized: false}));
-
 //passport configuration
 app.use(passport.initialize());
 app.use(passport.session());
@@ -29,8 +27,7 @@ require('./server/config/passport.js');
 require("./server/auth/fb_auth.js");
 require("./server/auth/google_auth.js")
 
-// this line requires and runs the code from our routes.js file and passes it
-//app so that we can attach our routing rules to our express application!
+//routes
 require('./server/config/routes.js')(app);
 
 // set up a static file server that points to the "client" directory

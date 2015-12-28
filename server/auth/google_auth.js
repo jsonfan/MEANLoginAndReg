@@ -9,7 +9,7 @@ var GOOGLE_APP_SECRET = "kyf81YOzj5zQPAeq6O9j3-Q1";
 passport.use(new GoogleStrategy({
 		clientID: GOOGLE_APP_ID,
 		clientSecret: GOOGLE_APP_SECRET,
-		callbackURL: "http://localhost:8000/auth/google/callback"
+		callbackURL: "/auth/google/callback"
 	},
 	function(accessToken, refreshToken, profile, done) {
 		User.findOne({ authId: profile.id }, function(err, user) {
@@ -20,6 +20,8 @@ passport.use(new GoogleStrategy({
 			if(!user) {
 				user = new User({
 					authId: profile.id,
+					username: profile._json.id, //should change this later
+					pictureURL: profile._json.image.url,
 					name: profile.displayName,
 					provider: profile.provider,
 					json_info: profile._json

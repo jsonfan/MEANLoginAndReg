@@ -1,6 +1,12 @@
-myApp.controller('mainController', function($scope, $location, userFactory){
+myApp.controller('mainController', function($scope, $location, $http, userFactory){
   $scope.registeredUser = {};
   $scope.error = {};
+  userFactory.checkLogin(function(response){
+    console.log(response);
+    if(response.data){
+      $location.url('/dashboard');
+    }
+  });
   $scope.createUser = function(input){
     console.log('make this new user', input);
     //call factory
@@ -25,12 +31,5 @@ myApp.controller('mainController', function($scope, $location, userFactory){
       }
     })
     $scope.userData = {};
-  }
-
-  $scope.loginFacebook = function(){
-    console.log('logging in with fb');
-  }
-  $scope.loginGoogle = function(){
-    console.log('logging in with google');
   }
 });

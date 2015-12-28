@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', ['ngRoute'])
-  .config(function($routeProvider){
+  .config(function($routeProvider, $httpProvider){
     $routeProvider
     .when('/', {
       templateUrl: '/partials/main.html'
@@ -7,4 +7,7 @@ var myApp = angular.module('myApp', ['ngRoute'])
     .when('/dashboard', {
       templateUrl: '/partials/dashboard.html'
     })
+    .otherwise({
+      redirectTo:'/'
+    });
   })
