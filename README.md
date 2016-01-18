@@ -20,5 +20,6 @@ node server.js
 
 * NodeJS
 * ExpressJS
+* AngularJS
 * MongoDB
 * PassportJS
