@@ -3,8 +3,8 @@ var User = mongoose.model("User");
 var passport = require("passport");
 var FacebookStrategy = require("passport-facebook").Strategy;
 
-var FACEBOOK_APP_ID = "1545771882410304";
-var FACEBOOK_APP_SECRET = "143096a9f6d9086ae890b7df30861e72";
+var FACEBOOK_APP_ID = "YOUR_FACEBOOK_APP_ID";
+var FACEBOOK_APP_SECRET = "YOUR_FACEBOOK_APP_SECRET";
 passport.use(new FacebookStrategy({
 		clientID: FACEBOOK_APP_ID,
 		clientSecret: FACEBOOK_APP_SECRET,
