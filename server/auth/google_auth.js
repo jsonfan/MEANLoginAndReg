@@ -3,8 +3,8 @@ var User = mongoose.model("User");
 var passport = require("passport");
 var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 
-var GOOGLE_APP_ID = "911092959606-214057sk9i9j2lv6f2tch46j5klj7dku.apps.googleusercontent.com";
-var GOOGLE_APP_SECRET = "kyf81YOzj5zQPAeq6O9j3-Q1";
+var GOOGLE_APP_ID = "YOUR_GOOGLE_APP_ID";
+var GOOGLE_APP_SECRET = "YOUR_GOOGLE_APP_SECRET";
 
 passport.use(new GoogleStrategy({
 		clientID: GOOGLE_APP_ID,
